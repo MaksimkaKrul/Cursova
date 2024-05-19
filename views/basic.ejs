@@ -1,0 +1,71 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<div id="basic-menu">
+    <p>Customize Your Character:</p>
+    <div class="customization-option">
+        <p>Hair Color:</p>
+        <div class="button-row">
+            <button onclick="selectOptionCharacter('hairColor', 'option1', event)" class="selected">Blonde</button>
+            <button onclick="selectOptionCharacter('hairColor', 'option2', event)">Black</button>
+            <button onclick="selectOptionCharacter('hairColor', 'option3', event)">Red</button>
+            <button onclick="selectOptionCharacter('hairColor', 'option4', event)">Brown</button>
+        </div>
+    </div>
+    <div class="customization-option">
+        <p>Body Color:</p>
+        <div class="button-row">
+            <button onclick="selectOptionCharacter('bodyColor', 'option1', event)" class="selected">White</button>
+            <button onclick="selectOptionCharacter('bodyColor', 'option2', event)">White-ish</button>
+            <button onclick="selectOptionCharacter('bodyColor', 'option3', event)">Yellow</button>
+            <button onclick="selectOptionCharacter('bodyColor', 'option4', event)">Black</button>
+            <button onclick="selectOptionCharacter('bodyColor', 'option5', event)">Green</button>
+        </div>
+    </div>
+
+    <div class="customization-option">
+        <p>Clothes:</p>
+        <div class="button-row">
+            <button onclick="selectOptionCharacter('clothes', 'option1', event)" class="selected">Girlish</button>
+            <button onclick="selectOptionCharacter('clothes', 'option2', event)">Manly</button>
+            <button onclick="selectOptionCharacter('clothes', 'option3', event)">Childish</button>
+        </div>
+    </div>
+
+    <div class="customization-option">
+        <p>Season to start game:</p>
+        <div class="button-row">
+            <button onclick="selectOptionCharacter('season', 'option1', event)" class="selected">Summer</button>
+            <button onclick="selectOptionCharacter('season', 'option2', event)">Autumn</button>
+            <button onclick="selectOptionCharacter('season', 'option3', event)">Winter</button>
+            <button onclick="selectOptionCharacter('season', 'option4', event)">Spring</button>
+        </div>
+    </div>
+
+    <div class="customization-option">
+        <p>Gender:</p>
+        <div class="button-row">
+            <button onclick="selectOptionCharacter('gender', 'option1', event)" class="selected">Male</button>
+            <button onclick="selectOptionCharacter('gender', 'option2', event)">Female</button>
+        </div>
+    </div>
+
+    <div class="customization-option">
+        <p>Eye color:</p>
+        <div class="button-row">
+            <button onclick="selectOptionCharacter('eyeColor', 'option1', event)" class="selected">Black</button>
+            <button onclick="selectOptionCharacter('eyeColor', 'option2', event)">Brown</button>
+            <button onclick="selectOptionCharacter('eyeColor', 'option3', event)">Red</button>
+            <button onclick="selectOptionCharacter('eyeColor', 'option4', event)">Blue</button>
+            <button onclick="selectOptionCharacter('eyeColor', 'option5', event)">Green</button>
+        </div>
+    </div>
+    <div class="customization-option">
+        <button onclick="createCharacter()">Create Character</button>
+    </div>
+</div>
+<script src="script.js"></script>

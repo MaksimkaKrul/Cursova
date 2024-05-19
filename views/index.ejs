@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="menu-container">
+        <div id="menuImage" style="max-width:200px;">
+            <img src="50x125Placeholder.png" , align="center">            
+        </div>
+        <div id="menu">
+            <div class="button-container">
+                <button class="full-width" onclick="toggleModal('aboutModal')">About us</button><button class="full-width" onclick="toggleModal('settingsModal')">Settings</button>
+                <% if (user) { %>
+                    <div class="full-width">
+                        <button class="full-width" onclick="toggleModal('userModal')">User</button>
+                    </div>
+                <% } else { %>
+                    <div class="half-width">
+                        <button onclick="goToLogin()">Login</button> <button onclick="goToRegister()">Register</button>
+                    </div>
+                <% } %>
+                <button class="full-width" onclick="toggleModal('authorsModal')">Authors</button>
+            </div>
+        </div>
+        <div id="menu-bottom-text">
+            <p>This site made by Maksim Krulevskiy for coursework.</p>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="image-container">
+            <img src="900x250.png" alt="Image Description">
+        </div>
+        <div class="text-container">
+            <p>Levels of Sensuality & Temperance - is an 18+ text-based RPG game inspired by DoL and Lilyth's Throne. The main reason for creating this project is to have my own vision, my own wishes, and to change all the things that my team and I don't like about the games we based it on</p>
+            <p style="margin-top: 100px; font-size: 24px; font-weight: bold; text-decoration: underline;">Choose the type of customization you want</p>
+            <div class="button-collection">
+                <button class="selected" onclick="changeContent('Basic')">Basic</button>
+                <button onclick="changeContent('Advance')">Advance</button>
+                <button onclick="changeContent('Full')">Full</button>
+            </div>
+        </div>
+        <div class="textbox-container">
+            <textarea id="content-text-box" readonly>With this customization you can change your character apperance and some other</textarea>
+        </div>
+        <div class="save-name">
+            <p style="font-size: 24; font-weight: bold;" >Please name your save file</p>
+            <input type="text" id="saveFileName" class="save-file-input" placeholder="Enter file name...">
+            <% if (user) { %>
+                <button class="full-width" onclick="startGame()">Start Game</button>
+            <% } else { %>
+                <button onclick="youShouldLogin()">Start game</button>
+            <% } %>
+        </div>
+    </div>
+
+    <div id="menu-button" onclick="toggleMenu()">☰ Menu</div>
+
+    <!-- Modals -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('aboutModal')">&times;</span>
+            <p align="center">About us</p>
+            <p>Levels of Sensuality & Temperance - is an 18+ text-based RPG game inspired by DoL and Lilyth's Throne. The main reason for creating this project is to have my own vision, my own wishes, and to change all the things that my team and I don't like about the games we based it on</p>
+            <p>Was created by Maksimka with help of friends ❤</p>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-menu">
+                <button id="option1Button" class="option-button" onclick="selectOption(1)">Theme</button>
+                <button id="option2Button" class="option-button" onclick="selectOption(2)">Option 2</button>        
+                <span class="close" onclick="toggleModal('settingsModal')">&times;</span>
+            </div>
+            <div class="modal-text">
+                <p>Settings Content...</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="authorsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('authorsModal')">&times;</span>
+            <p>Authors...</p>
+        </div>
+    </div>
+
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('userModal')">&times;</span>
+            <% if (user) { %>
+            <p>Username: <%= user.name %></p>
+            <p>Email: <%= user.email %></p>
+            <% } else { %>
+            <% } %>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

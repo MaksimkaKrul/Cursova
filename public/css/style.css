@@ -1,0 +1,371 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Calibri, sans-serif; 
+  background-color: #000000;
+}
+
+p { 
+  color: rgb(2, 168, 168);
+}
+a {
+  color: #0047AB;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  width: auto\9; 
+  align-self: center;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 200px;
+  margin-top: 200px;
+}
+
+button {
+  padding: 15px 20px;
+  margin: 0;
+  border: 2px solid #555;
+  background-color: #333;
+  color: #ffffff;
+  position: relative;
+  transition: background-color 0.3s;
+  font-family: Calibri, sans-serif; 
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #504f4f;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.half-width button {
+  width: calc(50%);
+}
+
+.half-width button:last-child {
+  margin-right: 0;
+}
+
+
+#menu-container {
+  text-align: center;
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #333;
+  border-right: 2px solid #555;
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+#menu-container p {
+  margin-bottom: 2px;
+}
+
+#menu .button-container {
+  margin-top: 50px;
+}
+
+#menuImage {
+  display: inline-block;
+  margin-top: 50px;
+}
+
+#menu-button {
+  position: fixed;
+  right: 10px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #272727;
+  color: rgb(2, 168, 168);
+}
+
+#menu {
+  padding: 20px;
+}
+
+#menu a {
+  display: block;
+  margin-bottom: 10px;
+  color: rgb(2, 168, 168);
+  text-decoration: none;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-left: 260px;
+  padding: 20px;
+}
+
+.text-container {
+  max-width: 900px;
+  margin-bottom: 100px;
+}
+
+.button-collection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.button-collection button {
+    border: 2px solid #555;
+    background-color: #333;
+    color: #ffffff;
+    margin-right: 10px;
+    cursor: pointer;
+    width: 150px;
+}
+.button-collection button.selected {
+  border: 2px solid rgb(2, 168, 168);
+  background-color: #504f4f;
+}
+
+
+.content {
+  text-align: center;
+}
+
+#content-text-box {
+  width: 600px;
+  height: 200px;
+  border: 2px solid #555;
+  background: #000000;
+  border-radius: 5px;
+  padding: 5px;
+  color: rgb(255, 255, 255);
+  font-family: Calibri, sans-serif; 
+  font-size: 24px;
+  text-align: justify;
+}
+
+
+#content img {
+  display: block;
+  margin: 0 auto;
+}
+
+
+#menu-bottom-text {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+}
+
+.save-file-input {
+  background-color: rgb(0, 0, 0);
+  border: 2px solid #555;
+  color: rgb(255, 255, 255);
+  padding: 8px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  font-family: Calibri, sans-serif; 
+}
+
+.save-file-input:focus {
+  outline: none;
+  background-color: rgb(39, 39, 39);
+  border-color: #7c7c7c;
+}
+
+
+
+/* Style the scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(2, 168, 168);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(2, 212, 212);
+}
+
+/* Style for modals */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1100px;
+  height: 800px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #333;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+#aboutModal .modal-content {
+    font-size: 24px;
+}
+
+.modal-menu {
+  border-bottom: 1px solid #555;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-menu .close {
+  cursor: pointer;
+}
+
+
+.option-button {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.option-button.selected {
+  border: 2px solid rgb(2, 168, 168);
+  background-color: #504f4f;
+}
+
+.modal-text {
+  padding: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.settings-buttons {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-family: Calibri, sans-serif; 
+}
+
+.settings-buttons button {
+  margin-right: 10px;
+  font-family: Calibri, sans-serif; 
+}
+  
+/* Login and register modals*/
+
+.login-register-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-register-content h2 {
+  margin-bottom: 20px;
+  color: white;
+}
+
+.login-register-content label {
+  margin-bottom: 10px;
+  color: white;
+}
+
+.login-register-content input {
+  margin-bottom: 15px;
+  color: white;
+  background-color: #333;
+  border-color: 1px solid #555;
+}
+
+.login-register-content .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+#basic-menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #333;
+  padding: 20px;
+}
+
+.customization-option {
+  margin-bottom: 20px;
+}
+
+.customization-option p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.button-row {
+  display: flex;
+}
+
+.button-row button {
+  margin-right: 10px;
+}
+
+.button-row button.selected {
+  border: 2px solid rgb(2, 168, 168);
+  background-color: #504f4f;
+}
+
+.popup {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(226, 39, 39, 0.926);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 9999;
+  transition: bottom 0.5s ease-in-out;
+}
