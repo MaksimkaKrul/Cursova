@@ -11,21 +11,25 @@
         <div id="menuImage" style="max-width:200px;">
             <img src="50x125Placeholder.png" , align="center">            
         </div>
-
         <h1>Character Details</h1>
-        <p>Hair Color: <span id="hairColor"></span></p>
-        <p>Body Color: <span id="bodyColor"></span></p>
-        <p>Clothes: <span id="clothes"></span></p>
-        <p>Season: <span id="season"></span></p>
-        <p>Gender: <span id="gender"></span></p>
-        <p>Eye Color: <span id="eyeColor"></span></p>
-        <p>Save file name: <span id="saveFileName"></span></p>
-        <p>Boob size: <span id="boobSize"></span></p>
-        <p>Penis size: <span id="penisSize"></span></p>
-        <p>Ass size: <span id="assSize"></span></p>
-        <p>Rape: <span id="rape"></span></p>
-        <p>Foot Fetish: <span id="footFetish"></span></p>
-        <p>Size Difference: <span id="sizeDifference"></span></p>
+        <div class="character-details">
+            <p id="timeDisplay">Current Time: 08:00</p>
+            <div id="all-details" class="hidden">
+                <p>Hair Color: <span id="hairColor"></span></p>
+                <p>Body Color: <span id="bodyColor"></span></p>
+                <p>Clothes: <span id="clothes"></span></p>
+                <p>Season: <span id="season"></span></p>
+                <p>Gender: <span id="gender"></span></p>
+                <p>Eye Color: <span id="eyeColor"></span></p>
+                <p>Save file name: <span id="saveFileName"></span></p>
+                <p>Boob size: <span id="boobSize"></span></p>
+                <p>Penis size: <span id="penisSize"></span></p>
+                <p>Ass size: <span id="assSize"></span></p>
+                <p>Rape: <span id="rape"></span></p>
+                <p>Foot Fetish: <span id="footFetish"></span></p>
+                <p>Size Difference: <span id="sizeDifference"></span></p>
+            </div>
+        </div>
 
         <div id="menu">
             <div class="button-container">
@@ -33,7 +37,7 @@
                 <div class="full-width">
                     <button class="full-width" onclick="toggleModal('userModal')">User</button>
                 </div>
-                <button class="full-width" onclick="displayCharacterModal()">Character</button>
+                <button class="full-width" onclick="displayCharacterHidden()">Character</button>
             </div>
         </div>
         <div id="menu-bottom-text">
@@ -41,13 +45,15 @@
         </div>
     </div>
 
-    <div id="content">
-        <div class="image-container">
-            <img src="900x250.png" alt="Image Description">
+    <div id="content">    
+    <div id="menu-button" onclick="toggleMenu()">☰ Menu</div>
+        <div class="text-container">
+            <p id="mainText">You wake up in your house.... you know, the place you used to think of as home. Your house has burned down and now you have to go looking for a place to stay. You're 1* years old, average build and you've never felt any attention from anyone but your parents, but that's about to change.</p>
+            <span id="continueText" class="highlighted-text" onclick="continueAction()">Continue</span>
         </div>
     </div>
 
-    <div id="menu-button" onclick="toggleMenu()">☰ Menu</div>
+
 
     <!-- Modals -->
     <div id="settingsModal" class="modal">

@@ -147,6 +147,7 @@
     "range-parser": "^1.2.1",
     "raw-body": "^2.5.2",
     "readable-stream": "^3.6.2",
+    "requirejs": "^2.3.6",
     "requires-port": "^1.0.0",
     "rimraf": "^3.0.2",
     "rrweb-cssom": "^0.6.0",

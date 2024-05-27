@@ -196,6 +196,7 @@ button:hover {
 
 
 
+
 /* Style the scrollbar */
 ::-webkit-scrollbar {
   width: 12px;
@@ -215,52 +216,47 @@ button:hover {
 
 /* Style for modals */
 .modal {
+  background-color: rgba(0, 0, 0, 0.5);
   display: none;
-  position: fixed;
-  z-index: 1;
+  height: 800px;
   left: 50%;
+  position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 1100px;
-  height: 800px;
-  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 .modal-content {
   background-color: #333;
-  padding: 20px;
   border: 1px solid #888;
-  width: 100%;
-  height: 100%;
   box-sizing: border-box;
+  height: 100%;
   overflow-y: auto;
-}
-
-#aboutModal .modal-content {
-    font-size: 24px;
+  padding: 20px;
+  width: 100%;
 }
 
 .modal-menu {
+  align-items: center;
   border-bottom: 1px solid #555;
-  padding: 10px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 10px;
 }
 
 .modal-menu .close {
   cursor: pointer;
 }
 
-
 .option-button {
-  padding: 8px 16px;
   cursor: pointer;
+  padding: 8px 16px;
 }
 
 .option-button.selected {
-  border: 2px solid rgb(2, 168, 168);
   background-color: #504f4f;
+  border: 2px solid rgb(2, 168, 168);
 }
 
 .modal-text {
@@ -270,6 +266,7 @@ button:hover {
 .close {
   color: #aaa;
   float: right;
+  font-family: Calibri, sans-serif;
   font-size: 28px;
   font-weight: bold;
 }
@@ -277,62 +274,61 @@ button:hover {
 .close:hover,
 .close:focus {
   color: black;
-  text-decoration: none;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .settings-buttons {
-  display: flex;
   align-items: center;
+  display: flex;
+  font-family: Calibri, sans-serif;
   font-size: 16px;
-  font-family: Calibri, sans-serif; 
 }
 
 .settings-buttons button {
+  font-family: Calibri, sans-serif;
   margin-right: 10px;
-  font-family: Calibri, sans-serif; 
 }
-  
-/* Login and register modals*/
 
+/* Login and register modals */
 .login-register-content {
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
 .login-register-content h2 {
-  margin-bottom: 20px;
   color: white;
+  margin-bottom: 20px;
 }
 
 .login-register-content label {
-  margin-bottom: 10px;
   color: white;
+  margin-bottom: 10px;
 }
 
 .login-register-content input {
-  margin-bottom: 15px;
-  color: white;
   background-color: #333;
   border-color: 1px solid #555;
+  color: white;
+  margin-bottom: 15px;
 }
 
 .login-register-content .close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
   cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
 #basic-menu {
+  background-color: #333;
+  left: 50%;
+  padding: 20px;
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #333;
-  padding: 20px;
 }
 
 .customization-option {
@@ -353,19 +349,34 @@ button:hover {
 }
 
 .button-row button.selected {
-  border: 2px solid rgb(2, 168, 168);
   background-color: #504f4f;
+  border: 2px solid rgb(2, 168, 168);
 }
 
 .popup {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
   background-color: rgba(226, 39, 39, 0.926);
-  color: white;
-  padding: 10px 20px;
   border-radius: 5px;
-  z-index: 9999;
+  bottom: 20px;
+  color: white;
+  left: 50%;
+  padding: 10px 20px;
+  position: fixed;
+  transform: translateX(-50%);
   transition: bottom 0.5s ease-in-out;
+  z-index: 9999;
 }
+
+.hidden {
+  display: none;
+}
+
+.character-details p {
+  margin-bottom: 2px;
+}
+
+.highlighted-text {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+

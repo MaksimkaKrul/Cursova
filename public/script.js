@@ -1,97 +1,115 @@
-const { localsName } = require("ejs");
-
 let buttons = document.querySelectorAll('.button-collection button');
+let currentTime = new Date(2024, 0, 1, 8, 0); 
+let timeIncrement = 5; 
+let currentIndexTextGame = 0;
 
-function toggleMenu() {
-  var menuContainer = document.getElementById("menu-container");
-  var contentContainer = document.getElementById("content");
-  var menuButton = document.getElementById("menu-button");
-  menuContainer.style.left === "0px";
-  
-  if (menuContainer.style.left === "0px") {
-      menuContainer.style.transition = "left 0.3s ease";
-      menuContainer.style.left = "-250px";
-      contentContainer.style.transition = "margin-left 0.3s ease";
-      contentContainer.style.marginLeft = "0";
-      menuButton.style.transition = "margin-left 0.3s ease";
-      menuButton.style.marginLeft = "0";
-  } else {
-      menuContainer.style.transition = "left 0.3s ease";
-      menuContainer.style.left = "0";
-      contentContainer.style.transition = "margin-left 0.3s ease";
-      contentContainer.style.marginLeft = "250px";
-      menuButton.style.transition = "margin-left 0.3s ease";
-      menuButton.style.marginLeft = "250px";
-  }
-}
+const texts = [
+    "First text for the content goes here.",
+    "Second text for the content goes here.",
+    "Third text for the content goes here.",
+];
 
 
-
-function changeContent(content) {
-    var contentTextBox = document.getElementById("content-text-box");
-    var buttons = document.querySelectorAll('.button-collection button');
-
-    buttons.forEach(button => button.classList.remove('selected'));
-    event.target.classList.add('selected');
-    contentTextBox.value = content;
-
-    if (content === 'Basic') {
-        contentTextBox.value = "With this customization you can change your character appearance and some other options.";
-    } else if (content === 'Advance') {
-        contentTextBox.value = "With this customization you can change your character appearance, some fetishes and other options.";
-    } else if (content === 'Full') {
-        contentTextBox.value = "With this customization you can change every option I can give you!";
-    }
-}
-
-document.getElementById('saveFileName').addEventListener('input', function() {
-    var inputValue = this.value;
-
-    var sanitizedValue = inputValue.replace(/[^a-zA-Z0-9]/g, '');
-
-    this.value = sanitizedValue;
-});
+const setLocalStorageItem = (key, value) => {
+    localStorage.setItem(key, value);
+};
 
 
+// ---------------------------------------
+//ALL OF THE MOVING
+// ---------------------------------------
 
-// Function to toggle modal visibility
-function toggleModal(modalId) {
-    var modal = document.getElementById(modalId);
-    var content = document.getElementById('content');
 
+const goToLogin = () => {
+    window.location.href = '/login'; 
+};
+
+const goToRegister = () => {
+    window.location.href = '/register';
+};
+
+const moveToChat = () => {
+    window.location.href = '/chat';
+};
+
+// ---------------------------------------
+// MODALS
+// ---------------------------------------
+
+
+const toggleModal = (modalId) => {
+    const modal = document.getElementById(modalId);
     if (modal.style.display === "block") {
         modal.style.display = "none";
-        content.style.opacity = "1"; 
-        return; 
+    } else {
+        modal.style.display = "block";
     }
+};
 
-    var openModals = document.querySelectorAll('.modal');
-    openModals.forEach(function(openModal) {
-        openModal.style.display = "none";
-    });
 
-    modal.style.display = "block";
-    content.style.opacity = "0.5"; 
-
-    selectOption(1);
-}
-
-function closeModal(modalId) {
-    var modal = document.getElementById(modalId);
+function closeModal(modal) {
     modal.style.display = "none";
-    document.getElementById('content').style.opacity = "1"; 
+    document.getElementById('content').style.opacity = "1";
 }
 
-function selectOption(option) {
-    var buttons = document.querySelectorAll('.option-button');
-    buttons.forEach(function(button) {
-        button.classList.remove('selected');
-    });
-    
-    var selectedButton = document.getElementById('option' + option + 'Button');
+
+// ---------------------------------------
+//MAIN PAGE FUNCTIONS
+// ---------------------------------------
+
+
+const toggleMenu = () => {
+    const menuContainer = document.getElementById("menu-container");
+    const contentContainer = document.getElementById("content");
+    const menuButton = document.getElementById("menu-button");
+
+    const isMenuOpen = menuContainer.style.left === "0px";
+
+    menuContainer.style.transition = "left 0.3s ease";
+    contentContainer.style.transition = "margin-left 0.3s ease";
+    menuButton.style.transition = "margin-left 0.3s ease";
+
+    if (isMenuOpen) {
+        menuContainer.style.left = "-250px";
+        contentContainer.style.marginLeft = "0";
+        menuButton.style.marginLeft = "0";
+    } else {
+        menuContainer.style.left = "0";
+        contentContainer.style.marginLeft = "250px";
+        menuButton.style.marginLeft = "250px";
+    }
+};
+
+
+const changeContent = (content) => {
+    const contentTextBox = document.getElementById("content-text-box");
+    const selectedButton = event.target;
+
+    document.querySelectorAll('.button-collection button').forEach(button => button.classList.remove('selected'));
     selectedButton.classList.add('selected');
-    
-    var modalText = document.querySelector('.modal-text p');
+
+    switch (content) {
+        case 'Basic':
+            contentTextBox.value = "With this customization you can change your character appearance and some other options.";
+            break;
+        case 'Advance':
+            contentTextBox.value = "With this customization you can change your character appearance, some fetishes and other options.";
+            break;
+        case 'Full':
+            contentTextBox.value = "With this customization you can change every option I can give you!";
+            break;
+        default:
+            break;
+    }
+};
+
+const selectOption = (option) => {
+    const buttons = document.querySelectorAll('.option-button');
+    const modalText = document.querySelector('.modal-text p');
+
+    buttons.forEach(button => button.classList.remove('selected'));
+    document.getElementById('option' + option + 'Button').classList.add('selected');
+
     if (option === 1) {
         modalText.innerHTML = `
             <p>Theme:</p>
@@ -108,108 +126,124 @@ function selectOption(option) {
     } else if (option === 2) {
         modalText.textContent = "Content for Option 2...";
     }
-}
+};
 
-function changeTheme(theme) {
-    var bodyBackgroundColor, contentBackgroundColor, contentTextColor;
-    var buttonBackgroundColor, buttonTextColor;
+const changeTheme = (theme) => {
+    const themes = {
+        'default': {
+            bodyBackgroundColor: '#000000',
+            contentBackgroundColor: '#000000',
+            contentTextColor: '#ffffff',
+            buttonBackgroundColor: '#333',
+            buttonTextColor: '#ffffff',
+            menuButtonBackgroundColor: '#272727'
+        },
+        'white': {
+            bodyBackgroundColor: '#FFFFFF',
+            contentBackgroundColor: '#ffffff',
+            contentTextColor: '#000000',
+            buttonBackgroundColor: '#ffffff',
+            buttonTextColor: '#000000',
+            menuButtonBackgroundColor: '#dcdcdc'
+        }
+    };
 
-    if (theme === 'default') {
-        bodyBackgroundColor = '#000000';
-        contentBackgroundColor = '#000000';
-        contentTextColor = '#ffffff';
-        buttonBackgroundColor = '#333';
-        buttonTextColor = '#ffffff';
-    } else if (theme === 'white') {
-        bodyBackgroundColor = '#FFFFFF';
-        contentBackgroundColor = '#ffffff';
-        contentTextColor = '#000000';
-        buttonBackgroundColor = '#ffffff';
-        buttonTextColor = '#000000';
-    }
+    const {
+        bodyBackgroundColor,
+        contentBackgroundColor,
+        contentTextColor,
+        buttonBackgroundColor,
+        buttonTextColor,
+        menuButtonBackgroundColor
+    } = themes[theme];
 
     document.body.style.backgroundColor = bodyBackgroundColor;
     document.getElementById("content-text-box").style.backgroundColor = contentBackgroundColor;
     document.getElementById("content-text-box").style.color = contentTextColor;
 
-    var saveFileInput = document.querySelector(".save-file-input");
+    const saveFileInput = document.querySelector(".save-file-input");
     saveFileInput.style.backgroundColor = contentBackgroundColor;
     saveFileInput.style.color = contentTextColor;
 
-    document.getElementById("menu-button").style.backgroundColor = (theme === 'default') ? '#272727' : '#dcdcdc';
+    document.getElementById("menu-button").style.backgroundColor = menuButtonBackgroundColor;
 
-    var buttonCollection = document.querySelector(".button-collection");
-    var buttons = buttonCollection.getElementsByTagName('button');
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].style.backgroundColor = buttonBackgroundColor;
-        buttons[i].style.color = buttonTextColor;
-    }
+    const buttons = document.querySelectorAll('.button-collection button');
+    buttons.forEach(button => {
+        button.style.backgroundColor = buttonBackgroundColor;
+        button.style.color = buttonTextColor;
+    });
 
-    var startGameButton = document.querySelector(".save-name button");
+    const startGameButton = document.querySelector(".save-name button");
     startGameButton.style.backgroundColor = buttonBackgroundColor;
     startGameButton.style.color = buttonTextColor;
 
     console.log("Theme changed to: " + theme);
-}
+};
 
+const changeFont = (font) => {
+    const fonts = {
+        'default': 'Calibri, sans-serif',
+        'times-new-roman': 'Times New Roman, serif'
+    };
 
-function changeFont(font) {
-    var bodyFontFamily, buttonFontFamily, inputFontFamily;
-
-    if (font === 'default') {
-        bodyFontFamily = 'Calibri, sans-serif';
-        buttonFontFamily = 'Calibri, sans-serif';
-        inputFontFamily = 'Calibri, sans-serif';
-    } else if (font === 'times-new-roman') {
-        bodyFontFamily = 'Times New Roman, serif';
-        buttonFontFamily = 'Times New Roman, serif';
-        inputFontFamily = 'Times New Roman, serif';
-    }
+    const bodyFontFamily = fonts[font];
+    const buttonFontFamily = fonts[font];
+    const inputFontFamily = fonts[font];
 
     document.body.style.fontFamily = bodyFontFamily;
 
-    var settingsButtons = document.querySelectorAll('.settings-buttons button');
-    for (var i = 0; i < settingsButtons.length; i++) {
-        settingsButtons[i].style.fontFamily = buttonFontFamily;
-    }
+    const settingsButtons = document.querySelectorAll('.settings-buttons button');
+    settingsButtons.forEach(button => button.style.fontFamily = buttonFontFamily);
 
-    var settingsContainer = document.querySelector('.settings-buttons');
+    const settingsContainer = document.querySelector('.settings-buttons');
     settingsContainer.style.fontFamily = bodyFontFamily;
 
-    var contentTextBox = document.getElementById("content-text-box");
+    const contentTextBox = document.getElementById("content-text-box");
     contentTextBox.style.fontFamily = bodyFontFamily;
 
-    var saveFileInput = document.querySelector(".save-file-input");
+    const saveFileInput = document.querySelector(".save-file-input");
     saveFileInput.style.fontFamily = inputFontFamily;
 
     console.log("Font changed to: " + font);
-}
+};
 
-function goToLogin() {
-    window.location.href = '/login'; 
-}
+const youShouldLogin = () => {
+    const popup = document.createElement('div');
+    popup.className = 'popup';
+    popup.innerHTML = 'You need to log in first.';
 
-function goToRegister() {
-    window.location.href = '/register';
-}
+    document.body.appendChild(popup);
+
+    void popup.offsetWidth;
+
+    popup.style.bottom = '10px';
+
+    setTimeout(() => {
+        popup.style.bottom = '-150px';
+        popup.addEventListener('transitionend', () => {
+            document.body.removeChild(popup);
+        }, { once: true });
+    }, 2500);
+};
 
 
-function startGame() {
-    var saveFileName = document.getElementById("saveFileName").value;
+// ---------------------------------------
+//SAVE NAME, STARTING GAME AND CHARACTER OPTION
+// ---------------------------------------
 
-    var customizationOption = document.querySelector(".button-collection .selected").textContent;
 
-    // Define the URLs for different customization options
-    var urls = {
+const startGame = () => {
+    const saveFileName = document.getElementById("saveFileName").value;
+    const customizationOption = document.querySelector(".button-collection .selected").textContent;
+    const urls = {
         "Basic": "/basic",
         "Advance": "/advance",
         "Full": "/Full"
     };
 
-    localStorage.setItem('saveFileName', saveFileName);
-    window.location.href = urls[customizationOption]
-}
-
+    setLocalStorageItem('saveFileName', saveFileName);
+    window.location.href = urls[customizationOption];
+};
 
 function selectOptionCharacter(category, option, event) {
     var buttons = event.target.parentElement.querySelectorAll('button');
@@ -250,17 +284,16 @@ function createCharacter() {
     window.location.href = "/game";
 }
 
-function displayCharacter() {
-    var hairColor = localStorage.getItem('hairColor');
-    var bodyColor = localStorage.getItem('bodyColor');
-    var clothes = localStorage.getItem('clothes');
-    var season = localStorage.getItem('season');
-    var gender = localStorage.getItem('gender');
-    var eyeColor = localStorage.getItem('eyeColor');
-    var saveFileName = localStorage.getItem('saveFileName');
+const displayCharacter = () => {
+    let hairColor = localStorage.getItem('hairColor');
+    let bodyColor = localStorage.getItem('bodyColor');
+    let clothes = localStorage.getItem('clothes');
+    let season = localStorage.getItem('season');
+    let gender = localStorage.getItem('gender');
+    let eyeColor = localStorage.getItem('eyeColor');
+    let saveFileName = localStorage.getItem('saveFileName');
 
-
-    var options = [
+    const options = [
         { key: 'boobSize', default: 'normal' },
         { key: 'penisSize', default: 'normal' },
         { key: 'assSize', default: 'normal' },
@@ -269,14 +302,12 @@ function displayCharacter() {
         { key: 'sizeDifference', default: 'normal' },
     ];
 
-    options.forEach(function(option) {
+    options.forEach(option => {
         if (!localStorage.getItem(option.key)) {
             localStorage.setItem(option.key, option.default);
         }
     });
 
-    
-    // Display saved options
     document.getElementById('hairColor').innerText = hairColor;
     document.getElementById('bodyColor').innerText = bodyColor;
     document.getElementById('clothes').innerText = clothes;
@@ -290,38 +321,54 @@ function displayCharacter() {
     document.getElementById('rape').innerText = localStorage.getItem('rape');
     document.getElementById('footFetish').innerText = localStorage.getItem('footFetish');
     document.getElementById('sizeDifference').innerText = localStorage.getItem('sizeDifference');
-}
+};
 
-
-function moveToChat(){
-    window.location.href = '/chat'
-}
-
-function youShouldLogin() {
-    console.log("You should login function called");
-    var popup = document.createElement('div');
-    popup.className = 'popup';
-    popup.innerHTML = 'You need to log in first.';
+const displayCharacterHidden = () => {
+    const characterDetailsContainers = document.querySelectorAll('#menu-container .character-details div');
     
-    document.body.appendChild(popup);
-    console.log("Popup element created and appended to the document");
+    characterDetailsContainers.forEach(container => {
+        if (container.classList.contains('hidden')) {
+            container.classList.remove('hidden');
+        } else {
+            container.classList.add('hidden');
+        }
+    });
+};
 
-    popup.style.bottom = '-50px';
+document.getElementById('saveFileName').addEventListener('input', function() {
+    var inputValue = this.value;
 
-    setTimeout(function() {
-        popup.style.bottom = '10px'; 
-    }, 100);
+    var sanitizedValue = inputValue.replace(/[^a-zA-Z0-9]/g, '');
 
-    setTimeout(function() {
-        popup.style.bottom = '-150px'; 
-    }, 2000);
+    this.value = sanitizedValue;
+});
 
-    setTimeout(function() {
-        document.body.removeChild(popup);
-        console.log("Popup element removed from the document");
-    }, 2500);
+
+// ---------------------------------------
+// FUNCTIONS FOR GAME
+// ---------------------------------------
+
+
+const updateTimeDisplay = () => {
+    const timeDisplay = document.getElementById('timeDisplay');
+    const formattedTime = currentTime.toLocaleTimeString('en-US', { hour12: false });
+    timeDisplay.textContent = `Current Time: ${formattedTime}`;
 }
 
+const continueAction = () => {
+    const mainText = document.getElementById('mainText');
 
+    mainText.textContent = texts[currentIndexTextGame];
 
+    if (currentIndexTextGame % 2 === 0) {
+        timeIncrement = 5;
+    } else {
+        timeIncrement = 10;
+    }
 
+    currentIndexTextGame = (currentIndexTextGame + 1) % texts.length;
+
+    currentTime.setMinutes(currentTime.getMinutes() + timeIncrement);
+
+    updateTimeDisplay();
+}
