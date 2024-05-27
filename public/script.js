@@ -47,10 +47,10 @@ const toggleModal = (modalId) => {
 };
 
 
-function closeModal(modal) {
+const closeModal = (modal) => {
     modal.style.display = "none";
     document.getElementById('content').style.opacity = "1";
-}
+};
 
 
 // ---------------------------------------
@@ -245,24 +245,22 @@ const startGame = () => {
     window.location.href = urls[customizationOption];
 };
 
-function selectOptionCharacter(category, option, event) {
-    var buttons = event.target.parentElement.querySelectorAll('button');
-    buttons.forEach(function(button) {
-        button.classList.remove('selected');
-    });
-
+const selectOptionCharacter = (category, option, event) => {
+    const buttons = event.target.parentElement.querySelectorAll('button');
+    buttons.forEach(button => button.classList.remove('selected'));
+    
     event.target.classList.add('selected');
-
+    
     console.log("Selected", option, "for", category);
-}
+};
 
-function createCharacter() {
-    var hairColor = document.querySelector('.customization-option:nth-child(2) .button-row .selected').innerText;
-    var bodyColor = document.querySelector('.customization-option:nth-child(3) .button-row .selected').innerText;
-    var clothes = document.querySelector('.customization-option:nth-child(4) .button-row .selected').innerText;
-    var season = document.querySelector('.customization-option:nth-child(5) .button-row .selected').innerText;
-    var gender = document.querySelector('.customization-option:nth-child(6) .button-row .selected').innerText;
-    var eyeColor = document.querySelector('.customization-option:nth-child(7) .button-row .selected').innerText;
+const createCharacter = () => {
+    const hairColor = document.querySelector('.customization-option:nth-child(2) .button-row .selected').innerText;
+    const bodyColor = document.querySelector('.customization-option:nth-child(3) .button-row .selected').innerText;
+    const clothes = document.querySelector('.customization-option:nth-child(4) .button-row .selected').innerText;
+    const season = document.querySelector('.customization-option:nth-child(5) .button-row .selected').innerText;
+    const gender = document.querySelector('.customization-option:nth-child(6) .button-row .selected').innerText;
+    const eyeColor = document.querySelector('.customization-option:nth-child(7) .button-row .selected').innerText;
 
     localStorage.setItem('hairColor', hairColor);
     localStorage.setItem('bodyColor', bodyColor);
@@ -271,18 +269,17 @@ function createCharacter() {
     localStorage.setItem('gender', gender);
     localStorage.setItem('eyeColor', eyeColor);
 
-    var optionalOptions = ['boobSize', 'penisSize', 'assSize', 'rape', 'footFetish', 'sizeDifference'];
+    const optionalOptions = ['boobSize', 'penisSize', 'assSize', 'rape', 'footFetish', 'sizeDifference'];
 
-    optionalOptions.forEach(function(option) {
-        var selectedOption = document.querySelector('.customization-option:nth-child(' + (8 + optionalOptions.indexOf(option)) + ') .button-row .selected');
+    optionalOptions.forEach((option, index) => {
+        const selectedOption = document.querySelector(`.customization-option:nth-child(${8 + index}) .button-row .selected`);
         if (selectedOption) {
             localStorage.setItem(option, selectedOption.innerText);
         }
     });
 
-
     window.location.href = "/game";
-}
+};
 
 const displayCharacter = () => {
     let hairColor = localStorage.getItem('hairColor');
