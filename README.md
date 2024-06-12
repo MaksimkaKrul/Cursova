@@ -1,6 +1,6 @@
 LOST - is a web text-rpg game, you can play that you can play now!
-The homepage, local registration and logging, character creation and a little bit of gameplay basis are already ready.
-As it is written in the site itself - the inspirations are DoL and Lilith throne, so I assume the gameplay is about the same, with its own changes. There will be movement on a small map (step by step), skirmishes and battles, and of course 18+ content.
+The homepage, local registration and logging, character creation and a little bit of gameplay basis are ready.
+As it is written in the site itself - the inspirations are DoL and Lilith's throne, so I assume the gameplay is about the same, with its own changes. There will be movement on a small map (step by step), skirmishes and battles, and of course 18+ content.
 POTENTIALLY possible to launch patreon or similar platform, where it will be possible to release updates, for example, a week earlier than for all others.
 
 To run the site - just run server.js.
